@@ -1,72 +1,68 @@
-import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useForm } from '../hooks/useForm';
+import { loginSchema } from '../utils/validation';
 import { LogIn } from 'lucide-react';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 import '../styles/auth.css';
 
 function LoginPage() {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-
+  const handleSubmit = async (data) => {
     try {
-      await login(formData.email, formData.password);
+      await login(data.email, data.password);
       navigate('/');
-    } catch (err) {
-      setError(err.response?.data?.error || 'Login failed');
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      // Error is handled by AuthContext
     }
   };
+
+  const { register, handleSubmit, errors, isSubmitting, isValid } = useForm(
+    loginSchema,
+    handleSubmit
+  );
 
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <h2>
+        <h2 className="auth-title">
           <LogIn size={32} /> Login to Vote9ja
         </h2>
-        
-        {error && <div className="error-message">{error}</div>}
-        
-        <form onSubmit={handleSubmit}>
+
+        <form onSubmit={handleSubmit} noValidate>
           <div className="form-group">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
+              {...register('email')}
+              className={errors.email ? 'input-error' : ''}
             />
+            {errors.email && <span className="error-text">{errors.email.message}</span>}
           </div>
-          
+
           <div className="form-group">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
+              id="password"
               type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
+              {...register('password')}
+              className={errors.password ? 'input-error' : ''}
             />
+            {errors.password && <span className="error-text">{errors.password.message}</span>}
           </div>
-          
-          <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+
+          <button
+            type="submit"
+            className="btn-primary"
+            disabled={isSubmitting || !isValid}
+          >
+            {isSubmitting ? 'Logging in...' : 'Login'}
           </button>
         </form>
-        
+
         <p className="auth-link">
           Don't have an account? <Link to="/register">Sign up</Link>
         </p>
