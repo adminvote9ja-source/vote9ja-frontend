@@ -1,0 +1,323 @@
+.leaderboard-page {
+  min-height: calc(100vh - 140px);
+  background: #f9f9f9;
+  padding: 20px;
+}
+
+.leaderboard-header {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.trophy-icon {
+  color: #d4af37;
+}
+
+.header-title h1 {
+  margin: 0;
+  color: #1a472a;
+  font-size: 2rem;
+}
+
+.contest-name {
+  color: #666;
+  margin: 5px 0 0 0;
+}
+
+.auto-refresh-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 16px;
+  background: #f0f0f0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.auto-refresh-toggle:hover {
+  background: #e0e0e0;
+}
+
+.auto-refresh-toggle input {
+  cursor: pointer;
+}
+
+.contest-info {
+  display: flex;
+  gap: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-item span:first-child {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.info-item span:last-child {
+  font-weight: 600;
+  color: #1a472a;
+}
+
+.badge {
+  display: inline-block;
+  background: #1a472a;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.leaderboard-table-section {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard-table thead {
+  background: #1a472a;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.leaderboard-table th {
+  padding: 18px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.position-col {
+  width: 100px;
+  text-align: center;
+}
+
+.contestant-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+.votes-col {
+  width: 120px;
+  text-align: center;
+}
+
+.prize-col {
+  width: 150px;
+  text-align: right;
+  padding-right: 30px;
+}
+
+.leaderboard-row {
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.leaderboard-row:hover {
+  background: #f9f9f9;
+}
+
+.leaderboard-row.top-three {
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.leaderboard-row.first-place {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.leaderboard-row td {
+  padding: 15px 18px;
+}
+
+.position-col td {
+  text-align: center;
+}
+
+.medal {
+  font-size: 1.5rem;
+  margin-right: 8px;
+}
+
+.position-number {
+  font-weight: 600;
+  color: #1a472a;
+}
+
+.contestant-col {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contestant-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contestant-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contestant-name {
+  margin: 0;
+  font-weight: 600;
+  color: #1a472a;
+}
+
+.contestant-bio {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.vote-count {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #d4af37;
+  display: inline-block;
+  background: #1a472a;
+  color: #d4af37;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.prize-amount {
+  font-weight: 700;
+  color: #d4af37;
+  font-size: 1.1rem;
+}
+
+.no-prize {
+  color: #ccc;
+}
+
+.leaderboard-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+  padding: 20px;
+}
+
+.no-entries {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .leaderboard-header {
+    padding: 20px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .header-title {
+    width: 100%;
+  }
+
+  .header-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .auto-refresh-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contest-info {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 12px 8px;
+    font-size: 0.85rem;
+  }
+
+  .position-col {
+    width: 60px;
+  }
+
+  .votes-col {
+    width: 80px;
+  }
+
+  .prize-col {
+    width: 100px;
+    padding-right: 10px;
+  }
+
+  .contestant-col {
+    min-width: 150px;
+  }
+
+  .contestant-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .contestant-name {
+    font-size: 0.9rem;
+  }
+
+  .contestant-bio {
+    font-size: 0.75rem;
+  }
+
+  .medal {
+    font-size: 1.2rem;
+  }
+}
